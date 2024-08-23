@@ -1,28 +1,24 @@
 <template lang="">
-    <div class="grid grid-cols-4 gap-4 mt-8">
+    <div class="grid grid-cols-4 gap-4 mt-10" v-auto-animate>
         <Card 
             v-for="item in items"
             :key="item.id"
-            :title="item.title" 
-            :imageUrl="item.imageUrl" 
-            :price="item.price"
-            :is-added="false"
-            :is-favourite="false"
-            :on-click-add="onClickAdd"
+            :item="item"
+            :isAdd="isInCart(item)"
+            :isFavourite="isInFavourites(item)"
         />
     </div>
 </template>
 <script setup>
-import { def } from '@vue/shared';
+import { inject } from 'vue';
 import Card from './Card.vue'
+const { isInCart } = inject('cart')
+const { isInFavourites } = inject('favourites')
 
 defineProps({
-    items: Array
+    items: Array,
 })
 
-const onClickAdd = () => {
-    console.log('add')
-}
 </script>
 <style lang="">
     

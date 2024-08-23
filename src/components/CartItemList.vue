@@ -1,24 +1,18 @@
 <template lang="">
-    <div class="mt-6 flex flex-col gap-4">
+    <div class="mt-6 flex flex-col gap-4" v-auto-animate>
             <CartItem 
-                title="Мужские кроссовки Nike Airzoom pizec kakawudai wdaiuwdh awdhaiuwd"
-                :price="12999"
-                img-url="/sneakers/sneakers-1.jpg" 
+                v-for="item in cart"
+                :key="item.id"
+                :item="item"
+                :remove="removeFromCart"
             />
-            <CartItem 
-                title="Мужские кроссовки Nike Airzoom pizec kak 2"
-                :price="12999"
-                img-url="/sneakers/sneakers-2.jpg" 
-            />
-            <CartItem 
-                title="Мужские кроссовки Nike Airzoom pizec kak 3"
-                :price="12999"
-                img-url="/sneakers/sneakers-3.jpg" 
-            />
-        </div>
+    </div>
 </template>
 <script setup>
+import { inject } from 'vue';
 import CartItem from './CartItem.vue';
+const { cart, removeFromCart } = inject('cart')
+
 </script>
 <style lang="">
     
